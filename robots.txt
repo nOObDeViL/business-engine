@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nOObDeViL.github.io/business-engine/sitemap.xml
