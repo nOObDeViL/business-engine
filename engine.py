@@ -1,6 +1,5 @@
 import os
 import json
-import base64
 import uuid
 from datetime import datetime
 import google.generativeai as genai
@@ -36,7 +35,17 @@ def run_pipeline():
         return
 
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash", generation_config={"response_mime_type": "application/json"})
+    
+    # Try the standard flash alias first, fallback gracefully to pro
+    candidate_models = ["gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-pro"]
+    model = None
+    
+    for m in candidate_models:
+        try:
+            model = genai.GenerativeModel(m, generation_config={"response_mime_type": "application/json"})
+            break
+        except Exception:
+            continue
 
     log_action(state, "Cycle triggered by GitHub Cloud Runner.")
     
@@ -44,7 +53,6 @@ def run_pipeline():
     key = 42
     cipher_bytes = [ord(char) ^ key for char in paypal_email]
 
-    # Generate next tool specification
     prompt = """
     Generate an MVP spec for a 100% client-side web utility (HTML5/Canvas/Vanilla JS, $0 compute) for creators or developers.
     Return JSON with:
@@ -62,7 +70,6 @@ def run_pipeline():
         prod_dir = os.path.join("tools", slug)
         os.makedirs(prod_dir, exist_ok=True)
 
-        # Build functional product
         product_html = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -115,7 +122,6 @@ def run_pipeline():
         with open(os.path.join(prod_dir, "index.html"), "w", encoding="utf-8") as f:
             f.write(product_html)
 
-        # Register business in state
         state["businesses"].append({
             "name": spec["name"],
             "slug": slug,
@@ -129,7 +135,6 @@ def run_pipeline():
     except Exception as e:
         log_action(state, f"Generation error: {str(e)}")
 
-    # Update Dashboard HTML
     render_dashboard(state)
     save_state(state)
 
