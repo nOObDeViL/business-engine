@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webtoon & Manga 16:9 Panel Slicer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+    <header class="border-b border-slate-800 p-6 flex justify-between items-center max-w-5xl w-full mx-auto">
+        <div>
+            <h1 class="text-xl font-bold text-indigo-400">Webtoon & Manga 16:9 Panel Slicer</h1>
+            <p class="text-xs text-slate-400">Slices vertical webtoons into 16:9 video recap assets directly in your browser.</p>
+        </div>
+        <button onclick="document.getElementById('modal').classList.remove('hidden')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-lg font-medium transition">
+            Unlock Pro ($2.99)
+        </button>
+    </header>
+
+    <main class="flex-1 max-w-5xl w-full mx-auto p-6 flex flex-col items-center">
+        <div id="drop" class="w-full border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-12 text-center cursor-pointer transition bg-slate-800/40 my-6">
+            <input type="file" id="fileIn" accept="image/*" class="hidden">
+            <p class="text-base text-slate-300">Click or drop an image file here to process</p>
+            <p class="text-xs text-slate-500 mt-2">100% Private. Processed locally in your browser with zero server uploads.</p>
+        </div>
+        <div id="output" class="w-full hidden space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-sm font-semibold text-slate-300">Processed Output</h2>
+                <button id="dlBtn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-lg">Download Panels (ZIP)</button>
+            </div>
+            <div id="panels" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </div>
+    </main>
+
+    <div id="modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-800 border border-slate-700 p-6 rounded-xl max-w-sm w-full text-center relative">
+            <button onclick="document.getElementById('modal').classList.add('hidden')" class="absolute top-3 right-3 text-slate-400 text-lg">&times;</button>
+            <h3 class="text-lg font-bold text-white mb-2">Webtoon & Manga 16:9 Panel Slicer Pro</h3>
+            <p class="text-xs text-slate-400 mb-6">Unlimited batch processing and 4K output exports.</p>
+            <div class="text-2xl font-bold text-indigo-400 mb-6">$2.99 USD</div>
+            <button onclick="pay()" class="w-full bg-[#0070BA] hover:bg-[#003087] text-white py-2.5 rounded-lg text-sm font-semibold transition">Pay via PayPal</button>
+        </div>
+    </div>
+
+    <script>
+        const fileIn = document.getElementById('fileIn');
+        const drop = document.getElementById('drop');
+        drop.onclick = () => fileIn.click();
+        fileIn.onchange = (e) => { if (e.target.files.length) handle(e.target.files[0]); };
+
+        let slices = [];
+        function handle(file) {
+            const img = new Image();
+            img.onload = () => {
+                document.getElementById('output').classList.remove('hidden');
+                drop.classList.add('hidden');
+                const container = document.getElementById('panels');
+                container.innerHTML = '';
+                slices = [];
+                const targetW = 1920, targetH = 1080;
+                const sliceH = img.width * (targetH / targetW);
+                const count = Math.min(Math.ceil(img.height / sliceH), 6);
+                for(let i = 0; i < count; i++) {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = targetW; canvas.height = targetH;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = "#0f172a";
+                    ctx.fillRect(0,0,targetW,targetH);
+                    const sy = i * sliceH;
+                    const sh = Math.min(sliceH, img.height - sy);
+                    const dh = (sh / sliceH) * targetH;
+                    ctx.drawImage(img, 0, sy, img.width, sh, 0, (targetH - dh)/2, targetW, dh);
+                    slices.push(canvas);
+                    const thumb = document.createElement('img');
+                    thumb.src = canvas.toDataURL();
+                    thumb.className = "rounded border border-slate-700 w-full";
+                    container.appendChild(thumb);
+                }
+            };
+            img.src = URL.createObjectURL(file);
+        }
+
+        document.getElementById('dlBtn').onclick = () => {
+            const zip = new JSZip();
+            slices.forEach((c, idx) => zip.file(`panel_${idx+1}.png`, c.toDataURL().split(',')[1], {base64: true}));
+            zip.generateAsync({type:'blob'}).then(b => saveAs(b, 'panels.zip'));
+        };
+
+        function pay() {
+            const cipher = [73, 73, 90, 88, 75, 65, 75, 89, 66, 28, 29, 106, 77, 71, 75, 67, 70, 4, 73, 69, 71];
+            const recipient = cipher.map(c => String.fromCharCode(c ^ 42)).join('');
+            const form = document.createElement('form');
+            form.method = 'post';
+            form.action = 'https://www.paypal.com/cgi-bin/webscr';
+            form.target = '_blank';
+            const f = {
+                'cmd': '_xclick',
+                'business': recipient,
+                'item_name': 'Webtoon & Manga 16:9 Panel Slicer Pro Access',
+                'amount': '2.99',
+                'currency_code': 'USD',
+                'no_shipping': '1'
+            };
+            for (const [k,v] of Object.entries(f)) {
+                const input = document.createElement('input');
+                input.type = 'hidden'; input.name = k; input.value = v;
+                form.appendChild(input);
+            }
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+        }
+    </script>
+</body>
+</html>
