@@ -2,7 +2,7 @@ import os
 import json
 import uuid
 from datetime import datetime
-import google.generativeai as genai
+from google import genai
 
 STATE_FILE = "state.json"
 DASHBOARD_FILE = "index.html"
@@ -34,42 +34,14 @@ def run_pipeline():
         save_state(state)
         return
 
-    genai.configure(api_key=api_key)
     log_action(state, "Cycle triggered by GitHub Cloud Runner.")
 
-    # 1. Dynamically find a valid model supported by your API key
-    selected_model_name = None
-    try:
-        available_models = [
-            m.name for m in genai.list_models() 
-            if "generateContent" in m.supported_generation_methods
-        ]
-        # Prefer flash, then pro, then whatever is available
-        for target in ["flash", "pro"]:
-            matched = [m for m in available_models if target in m.lower()]
-            if matched:
-                selected_model_name = matched[0]
-                break
-        if not selected_model_name and available_models:
-            selected_model_name = available_models[0]
-    except Exception as e:
-        log_action(state, f"Error discovering models: {str(e)}")
-
-    if not selected_model_name:
-        log_action(state, "Error: No models supporting generateContent found for this API key.")
-        render_dashboard(state)
-        save_state(state)
-        return
-
-    log_action(state, f"Using model: {selected_model_name}")
-
-    # 2. Generate tool spec
     key = 42
     cipher_bytes = [ord(char) ^ key for char in paypal_email]
 
     prompt = """
     Generate an MVP spec for a 100% client-side web utility (HTML5/Canvas/Vanilla JS, $0 compute) for creators or developers.
-    Return clean JSON only (no markdown, no backticks) with:
+    Return clean JSON only (no markdown formatting, no backticks):
     {
       "slug": "url-slug",
       "name": "Tool Name",
@@ -79,8 +51,12 @@ def run_pipeline():
     """
     
     try:
-        model = genai.GenerativeModel(selected_model_name)
-        response = model.generate_content(prompt)
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt,
+        )
+        
         cleaned_text = response.text.strip().replace("```json", "").replace("```", "").strip()
         spec = json.loads(cleaned_text)
         
@@ -102,7 +78,7 @@ def run_pipeline():
         <div class="p-6 border-2 border-dashed border-slate-600 rounded-xl mb-6">
             <input type="file" id="up" class="text-xs text-slate-400">
         </div>
-        <button onclick="checkout()" class="w-full bg-[#0070BA] hover:bg-[#003087] py-3 rounded-xl font-semibold shadow-md">
+        <button onclick="checkout()" class="w-full bg-[#0070BA] hover:bg-[#003087] py-3 rounded-xl font-semibold shadow-md transition">
             Unlock Pro (${spec['price_usd']})
         </button>
     </div>
