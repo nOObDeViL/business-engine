@@ -35,27 +35,41 @@ def run_pipeline():
         return
 
     genai.configure(api_key=api_key)
-    
-    # Try the standard flash alias first, fallback gracefully to pro
-    candidate_models = ["gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-pro"]
-    model = None
-    
-    for m in candidate_models:
-        try:
-            model = genai.GenerativeModel(m, generation_config={"response_mime_type": "application/json"})
-            break
-        except Exception:
-            continue
-
     log_action(state, "Cycle triggered by GitHub Cloud Runner.")
-    
-    # Obfuscate email target
+
+    # 1. Dynamically find a valid model supported by your API key
+    selected_model_name = None
+    try:
+        available_models = [
+            m.name for m in genai.list_models() 
+            if "generateContent" in m.supported_generation_methods
+        ]
+        # Prefer flash, then pro, then whatever is available
+        for target in ["flash", "pro"]:
+            matched = [m for m in available_models if target in m.lower()]
+            if matched:
+                selected_model_name = matched[0]
+                break
+        if not selected_model_name and available_models:
+            selected_model_name = available_models[0]
+    except Exception as e:
+        log_action(state, f"Error discovering models: {str(e)}")
+
+    if not selected_model_name:
+        log_action(state, "Error: No models supporting generateContent found for this API key.")
+        render_dashboard(state)
+        save_state(state)
+        return
+
+    log_action(state, f"Using model: {selected_model_name}")
+
+    # 2. Generate tool spec
     key = 42
     cipher_bytes = [ord(char) ^ key for char in paypal_email]
 
     prompt = """
     Generate an MVP spec for a 100% client-side web utility (HTML5/Canvas/Vanilla JS, $0 compute) for creators or developers.
-    Return JSON with:
+    Return clean JSON only (no markdown, no backticks) with:
     {
       "slug": "url-slug",
       "name": "Tool Name",
@@ -63,9 +77,13 @@ def run_pipeline():
       "price_usd": 2.50
     }
     """
+    
     try:
+        model = genai.GenerativeModel(selected_model_name)
         response = model.generate_content(prompt)
-        spec = json.loads(response.text)
+        cleaned_text = response.text.strip().replace("```json", "").replace("```", "").strip()
+        spec = json.loads(cleaned_text)
+        
         slug = spec["slug"]
         prod_dir = os.path.join("tools", slug)
         os.makedirs(prod_dir, exist_ok=True)
