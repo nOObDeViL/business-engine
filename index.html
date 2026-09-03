@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Engine Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans p-4 min-h-screen">
+    <div class="max-w-4xl mx-auto space-y-6">
+        <header class="border-b border-slate-800 pb-3">
+            <h1 class="text-xl font-bold text-indigo-400">AUTONOMOUS BUSINESS ENGINE</h1>
+            <p class="text-xs text-slate-400">Host: GitHub Cloud Actions (100% Free)</p>
+        </header>
+        <div class="grid grid-cols-3 gap-3 text-center">
+            <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+                <div class="text-[10px] text-slate-400 uppercase">Balance</div>
+                <div class="text-2xl font-bold text-emerald-400">$0.00</div>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+                <div class="text-[10px] text-slate-400 uppercase">Live Products</div>
+                <div class="text-2xl font-bold text-white">0</div>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+                <div class="text-[10px] text-slate-400 uppercase">Budget Used</div>
+                <div class="text-2xl font-bold text-indigo-400">₹0.00</div>
+            </div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg">
+            <h2 class="text-xs font-bold text-slate-300 uppercase mb-3">Live Portfolio</h2>
+            <table class="w-full text-left text-xs">
+                <thead><tr class="text-slate-400 border-b border-slate-800"><th>Name</th><th>Link</th><th>Price</th><th>Status</th></tr></thead>
+                <tbody><tr><td colspan="4" class="text-slate-500 py-2">No tools built yet.</td></tr></tbody>
+            </table>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg">
+            <h2 class="text-xs font-bold text-slate-300 uppercase mb-2">Cloud Execution Logs</h2>
+            <div class="bg-black p-3 rounded text-[11px] font-mono text-slate-400 h-40 overflow-y-auto"><div class="py-0.5">[2026-09-03 12:59:32 UTC] Generation error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.</div><div class="py-0.5">[2026-09-03 12:59:32 UTC] Cycle triggered by GitHub Cloud Runner.</div></div>
+        </div>
+    </div>
+</body>
+</html>
