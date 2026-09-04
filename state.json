@@ -65,12 +65,17 @@
       "price": 0.99,
       "status": "LIVE",
       "created_at": "2026-09-04"
+    },
+    {
+      "name": "Webtoon 9:16 Shorts Slicer",
+      "slug": "comic-slicer-mobile-9x16-9",
+      "path": "tools/comic-slicer-mobile-9x16-9/index.html",
+      "price": 0.99,
+      "status": "LIVE",
+      "created_at": "2026-09-04"
     }
   ],
   "logs": [
-    "[2026-09-03 13:09:32 UTC] Generation error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}",
-    "[2026-09-03 13:12:57 UTC] Cycle triggered by GitHub Cloud Runner.",
-    "[2026-09-03 13:13:02 UTC] Successfully built and deployed 'ShotFrame Studio'.",
     "[2026-09-03 13:16:11 UTC] Cycle triggered by GitHub Cloud Runner.",
     "[2026-09-03 13:16:11 UTC] Contacting AI Model: models/gemini-3.6-flash",
     "[2026-09-03 13:16:12 UTC] AI generation unavailable (503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}). Engaging built-in failsafe blueprint.",
@@ -92,7 +97,10 @@
     "[2026-09-04 10:01:04 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-7/",
     "[2026-09-04 15:12:10 UTC] Cycle triggered by GitHub Actions.",
     "[2026-09-04 15:12:11 UTC] Fallback generator engaged: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}",
-    "[2026-09-04 15:12:11 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-8/"
+    "[2026-09-04 15:12:11 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-8/",
+    "[2026-09-04 19:56:20 UTC] Cycle triggered by GitHub Actions.",
+    "[2026-09-04 19:56:21 UTC] Fallback generator engaged: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}",
+    "[2026-09-04 19:56:21 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-9/"
   ],
   "indexing_status": "Sitemap Updated (2026-09-04)"
 }
