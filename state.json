@@ -97,12 +97,17 @@
       "price": 0.99,
       "status": "LIVE",
       "created_at": "2026-09-05"
+    },
+    {
+      "name": "Webtoon 9:16 Shorts Slicer",
+      "slug": "comic-slicer-mobile-9x16-13",
+      "path": "tools/comic-slicer-mobile-9x16-13/index.html",
+      "price": 0.99,
+      "status": "LIVE",
+      "created_at": "2026-09-05"
     }
   ],
   "logs": [
-    "[2026-09-03 13:42:01 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-4/",
-    "[2026-09-03 20:10:51 UTC] Cycle triggered by GitHub Actions.",
-    "[2026-09-03 20:10:52 UTC] Fallback generator engaged: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}",
     "[2026-09-03 20:10:52 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-5/",
     "[2026-09-04 01:30:01 UTC] Cycle triggered by GitHub Actions.",
     "[2026-09-04 01:30:01 UTC] Fallback generator engaged: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}",
@@ -124,7 +129,10 @@
     "[2026-09-05 09:30:17 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-11/",
     "[2026-09-05 14:02:55 UTC] Cycle triggered by GitHub Actions.",
     "[2026-09-05 14:02:56 UTC] Fallback generator engaged: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}",
-    "[2026-09-05 14:02:56 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-12/"
+    "[2026-09-05 14:02:56 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-12/",
+    "[2026-09-05 19:36:35 UTC] Cycle triggered by GitHub Actions.",
+    "[2026-09-05 19:36:36 UTC] Fallback generator engaged: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}",
+    "[2026-09-05 19:36:36 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-13/"
   ],
   "indexing_status": "Sitemap Updated (2026-09-05)"
 }
