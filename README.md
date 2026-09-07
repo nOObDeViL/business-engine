@@ -10,3 +10,4 @@ Zero-install, browser-based creator tools running client-side with 100% data pri
 | **SVG Path Cleaner & Minifier** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/svg-cleaner-pro/index.html) | `$0.99` |
 | **Client-Side JSON Schema Mapper** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/json-schema-mapper/index.html) | `$0.99` |
 | **CSS Mesh Gradient Generator** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/css-mesh-generator/index.html) | `$0.99` |
+| **Base64 Web Asset Packer** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/base64-asset-packer/index.html) | `$0.99` |
