@@ -81,13 +81,17 @@
       "price": 0.99,
       "status": "LIVE",
       "created_at": "2026-09-07"
+    },
+    {
+      "name": "Batch EXIF Privacy Stripper",
+      "slug": "exif-metadata-stripper",
+      "path": "tools/exif-metadata-stripper/index.html",
+      "price": 0.99,
+      "status": "LIVE",
+      "created_at": "2026-09-07"
     }
   ],
   "logs": [
-    "[2026-09-06 01:25:36 UTC] Fallback generator engaged: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}",
-    "[2026-09-06 01:25:36 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-14/",
-    "[2026-09-06 09:44:15 UTC] Cycle triggered by GitHub Actions.",
-    "[2026-09-06 09:44:16 UTC] Fallback generator engaged: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}",
     "[2026-09-06 09:44:16 UTC] Deployed tool to /tools/comic-slicer-mobile-9x16-15/",
     "[2026-09-06 12:56:02 UTC] Autonomous cycle started.",
     "[2026-09-06 12:56:02 UTC] Autonomously pruned 11 redundant product entries.",
@@ -113,7 +117,11 @@
     "[2026-09-07 16:42:17 UTC] Autonomous cycle started.",
     "[2026-09-07 16:42:18 UTC] AI generation fallback (404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}). Deploying from catalog.",
     "[2026-09-07 16:42:18 UTC] Deployed unique tool 'Client-Side Regex Visualizer' at $0.99.",
-    "[2026-09-07 16:42:18 UTC] Dispatched IndexNow real-time crawler requests."
+    "[2026-09-07 16:42:18 UTC] Dispatched IndexNow real-time crawler requests.",
+    "[2026-09-07 20:50:33 UTC] Autonomous cycle started.",
+    "[2026-09-07 20:50:34 UTC] AI generation fallback (404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}). Deploying from catalog.",
+    "[2026-09-07 20:50:34 UTC] Deployed unique tool 'Batch EXIF Privacy Stripper' at $0.99.",
+    "[2026-09-07 20:50:35 UTC] Dispatched IndexNow real-time crawler requests."
   ],
   "indexing_status": "Sitemap Updated (2026-09-06)"
 }

@@ -13,3 +13,4 @@ Zero-install, browser-based creator tools running client-side with 100% data pri
 | **Base64 Web Asset Packer** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/base64-asset-packer/index.html) | `$0.99` |
 | **Markdown Clean Table Formatter** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/markdown-cheat-formatter/index.html) | `$0.99` |
 | **Client-Side Regex Visualizer** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/regex-flow-tester/index.html) | `$0.99` |
+| **Batch EXIF Privacy Stripper** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/exif-metadata-stripper/index.html) | `$0.99` |
