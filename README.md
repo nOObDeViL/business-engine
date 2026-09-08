@@ -16,3 +16,4 @@ Zero-install, browser-based creator tools running client-side with 100% data pri
 | **Batch EXIF Privacy Stripper** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/exif-metadata-stripper/index.html) | `$0.99` |
 | **Developer Asset Suite #12** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/tool-suite-module-12/index.html) | `$0.99` |
 | **Developer Asset Suite #13** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/tool-suite-module-13/index.html) | `$0.99` |
+| **Developer Asset Suite #14** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/tool-suite-module-14/index.html) | `$0.99` |
