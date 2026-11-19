@@ -275,3 +275,4 @@ Zero-install, browser-based creator tools running client-side with 100% data pri
 | **Developer Asset Suite #270** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/tool-suite-module-270/index.html) | `$0.99` |
 | **Developer Asset Suite #271** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/tool-suite-module-271/index.html) | `$0.99` |
 | **Developer Asset Suite #272** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/tool-suite-module-272/index.html) | `$0.99` |
+| **Developer Asset Suite #273** | Client-Side Utility | [Launch Tool](https://nOObDeViL.github.io/business-engine/tools/tool-suite-module-273/index.html) | `$0.99` |
